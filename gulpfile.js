@@ -37,7 +37,11 @@ gulp.task('bundle-scripts', () => {
     .pipe(webpack({
         mode: 'production'
     }, compiler))
-    .pipe(uglify())
+    .pipe(uglify({
+        output: {
+            max_line_len: 120
+        }
+    }))
     .pipe(rename('assistant.js'))
     .pipe(gulp.dest('./pkg/scripts'));
 });
