@@ -1,5 +1,5 @@
 const GlobalVars = {
-    serviceURL: ''
+  serviceURL: ''
 };
 
 Object.freeze(GlobalVars);
