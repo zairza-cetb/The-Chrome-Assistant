@@ -29,6 +29,7 @@
   "devDependencies": {
     "del": "^5.1.0",
     "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.2.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-prettier": "^2.3.0",
     "gulp-rename": "^1.4.0",

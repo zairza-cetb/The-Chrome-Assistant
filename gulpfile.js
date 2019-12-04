@@ -6,7 +6,8 @@ const gulp = require('gulp'),
     compiler = require('webpack'),
     rename = require('gulp-rename'),
     prettier = require('gulp-prettier'),
-    minifyHTML = require('gulp-htmlmin')
+    minifyHTML = require('gulp-htmlmin'),
+    minifyCSS = require('gulp-cssmin')
 
 gulp.task('clean', () => {
     return del('./pkg', {
@@ -15,8 +16,8 @@ gulp.task('clean', () => {
 });
 
 gulp.task('pack-dependencies', () => {
-    return gulp.src('./src/assets/js/*')
-    .pipe(gulp.dest('./pkg/assets/js'));
+    gulp.src('./src/assets/js/*').pipe(gulp.dest('./pkg/assets/js'));
+    return gulp.src('./src/assets/css/*').pipe(gulp.dest('./pkg/assets/css'));
 });
 
 gulp.task('js-pretty', () => {
@@ -41,6 +42,12 @@ gulp.task('bundle-scripts', () => {
     .pipe(gulp.dest('./pkg/scripts'));
 });
 
+gulp.task('bundle-styles', () => {
+    return gulp.src('./src/styles/*')
+        .pipe(minifyCSS())
+        .pipe(gulp.dest('./pkg/styles'));
+});
+
 gulp.task('bundle-remain', () => {
     return gulp.src('./src/manifest.json')
         .pipe(gulp.dest('./pkg'));
@@ -55,16 +62,18 @@ gulp.task('bundle-views', () => {
 });
 
 gulp.task('build', () => {
-    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain']);
+    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles']);
 });
 
-gulp.task('run', ['pack-dependencies', 'bundle-scripts', 'bundle-remain', 'bundle-views']);
+gulp.task('run', ['pack-dependencies', 'bundle-scripts', 'bundle-remain', 'bundle-views', 'bundle-styles']);
 
 gulp.task('watch', () => {
+    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles']);
     gulp.watch('./src/assets/js/*',['pack-dependencies']);
     gulp.watch('./src/scripts/**/*.js', ['bundle-scripts']);
     gulp.watch('./src/manifest.json', ['bundle-remain']);
     gulp.watch('./src/ui/**/*', ['bundle-views']);
+    gulp.watch('./src/styles/*', ['bundle-styles']);
 });
 
 gulp.task('default', ['run', 'watch']);
