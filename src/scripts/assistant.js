@@ -1,4 +1,16 @@
+'use strict';
 const app = angular.module('chrome-assistant', ['ngRoute']);
 
-import { GLOBAL } from './utils/global';
+import GLOBAL from './utils/global';
 
+app.config(function($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: './components/test.html',
+            controller: 'test-contr',
+        });
+});
+
+app.controller('test-contr', function($scope) {
+    console.warn('inside the test-contr');
+});
