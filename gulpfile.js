@@ -1,7 +1,8 @@
 const gulp = require('gulp'),
     del = require('del'),
     seqRunner = require('run-sequence'),
-    minify = require('gulp-minify')
+    minify = require('gulp-minify'),
+    minifyHTML = require('gulp-htmlmin')
 
 gulp.task('clean', () => {
     return del('./pkg', {
@@ -26,9 +27,34 @@ gulp.task('pack-dependencies', () => {
     .pipe(gulp.dest('./pkg/assets/js'));
 });
 
-gulp.task('build', function() {
-    seqRunner('clean', ['pack-dependencies']);
-})
+gulp.task('bundle-scripts', () => {
+    return gulp.src('./src/scripts/*.js')
+    .pipe(minify({
+        ext: {
+          min: '.js'
+        },
+        noSource: true,
+        mangle: false
+    }))
+    .pipe(gulp.dest('./pkg/scripts'));
+});
+
+gulp.task('bundle-remain', () => {
+    return gulp.src('./src/manifest.json')
+        .pipe(gulp.dest('./pkg'));
+});
+
+gulp.task('bundle-views', () => {
+    return gulp.src('./src/ui/*')
+        // .pipe(minifyHTML({
+        //     collapseWhitespace: true
+        // }))
+        .pipe(gulp.dest('./pkg/ui'));
+});
+
+gulp.task('build', () => {
+    seqRunner('clean', 'pack-dependencies', ['bundle-scripts', 'bundle-views', 'bundle-remain']);
+});
 
 gulp.task('watch', ['package-dependencies'], () => {
     gulp.watch('./src/assets/js/*')
