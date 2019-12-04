@@ -35,7 +35,7 @@ gulp.task('js-pretty', () => {
 gulp.task('bundle-scripts', () => {
     return gulp.src('./src/scripts/**/*.js')
     .pipe(webpack({
-        mode: 'development'
+        mode: 'production'
     }, compiler))
     .pipe(uglify())
     .pipe(rename('assistant.js'))
