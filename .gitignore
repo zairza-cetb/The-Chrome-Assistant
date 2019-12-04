@@ -62,3 +62,6 @@ typings/
 
 # locks
 package-lock.json
+
+# package build
+pkg/
