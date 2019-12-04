@@ -10,11 +10,6 @@ gulp.task('clean', () => {
     });
 });
 
-gulp.task('default', () => {
-    console.log('Supported gulp tasks: clean, watch, build');
-    return;
-});
-
 gulp.task('pack-dependencies', () => {
     return gulp.src('./src/assets/js/*')
     // .pipe(uglify())
@@ -44,6 +39,13 @@ gulp.task('build', () => {
     seqRunner('clean', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain']);
 });
 
-gulp.task('watch', ['package-dependencies'], () => {
-    gulp.watch('./src/assets/js/*')
+gulp.task('run', ['pack-dependencies', 'bundle-scripts', 'bundle-remain', 'bundle-views']);
+
+gulp.task('watch', () => {
+    gulp.watch('./src/assets/js/*',['pack-dependencies']);
+    gulp.watch('./src/scripts/**/*.js', ['bundle-scripts']);
+    gulp.watch('./src/manifest.json', ['bundle-remain']);
+    gulp.watch('./src/ui/**/*', ['bundle-views']);
 });
+
+gulp.task('default', ['run', 'watch']);
