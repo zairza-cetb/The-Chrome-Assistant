@@ -1,7 +1,7 @@
 const gulp = require('gulp'),
     del = require('del'),
     seqRunner = require('run-sequence'),
-    minify = require('gulp-minify'),
+    uglify = require('gulp-uglify-es').default,
     minifyHTML = require('gulp-htmlmin')
 
 gulp.task('clean', () => {
@@ -17,25 +17,13 @@ gulp.task('default', () => {
 
 gulp.task('pack-dependencies', () => {
     return gulp.src('./src/assets/js/*')
-    .pipe(minify({
-        ext: {
-          min: '.js'
-        },
-        noSource: true,
-        mangle: false
-    }))
+    .pipe(uglify())
     .pipe(gulp.dest('./pkg/assets/js'));
 });
 
 gulp.task('bundle-scripts', () => {
     return gulp.src('./src/scripts/*.js')
-    .pipe(minify({
-        ext: {
-          min: '.js'
-        },
-        noSource: true,
-        mangle: false
-    }))
+    .pipe(uglify())
     .pipe(gulp.dest('./pkg/scripts'));
 });
 
@@ -46,9 +34,9 @@ gulp.task('bundle-remain', () => {
 
 gulp.task('bundle-views', () => {
     return gulp.src('./src/ui/*')
-        // .pipe(minifyHTML({
-        //     collapseWhitespace: true
-        // }))
+        .pipe(minifyHTML({
+            collapseWhitespace: true
+        }))
         .pipe(gulp.dest('./pkg/ui'));
 });
 

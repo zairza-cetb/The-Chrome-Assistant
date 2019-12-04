@@ -1,7 +1,7 @@
 'use strict';
 const app = angular.module('chrome-assistant', ['ngRoute']);
 
-import GLOBAL from './utils/global';
+import GlobalVars from './utils/global';
 
 app.config(function($routeProvider) {
     $routeProvider

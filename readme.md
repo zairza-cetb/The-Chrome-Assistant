@@ -20,7 +20,7 @@ Pre-requisite: `node v10.16.3 & npm v6.9.0` _(earlier versions may work as well)
 1. `sudo npm install -g gulp@3.9.1`.
 2. `npm install -D gulp@3.9.1`.
 3. `npm install --only=dev`
-3. `gulp build`.
+3. `gulp build` _(may require `sudo` permissions)_.
 4. Open chrome and search `chrome://extensions` or click on the three dots in the upper right corner and follow `More tools>Extensions`.
 5. Turn on (toggle) the developer settings.
 6. Click `load unpacked` and navigate to the `pkg` directory of `The-Chrome-Assistant`.

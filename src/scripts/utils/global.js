@@ -1,6 +1,6 @@
-const GLOBAL = {
+const GlobalVars = {
     serviceURL: ''
 };
 
-Object.freeze(GLOBAL);
-export default GLOBAL;
+Object.freeze(GlobalVars);
+export default GlobalVars;
