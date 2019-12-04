@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "version": "1.0.0",
+    "name": "The-Chrome-Assistant",
+    "short_name": "Assistant",
+    "description": "Smart assistant that unifies the web experience in the chrome browser, automates tasks based on voice, provides scheduled updates on user concerns, implement important lacking features in chrome, and many more, just by installing a simple chrome extension.",
+    "browser_action" :
+    {
+      "default_title" : "The-Chrome-Assistant",
+      "default_popup" : "ui/view.html"
+    },
+    "permissions": [
+      "http://google.com/",
+      "tabs",
+      "<all_urls>",
+      "storage",
+      "contextMenus",
+      "notifications",
+      "tts",
+      "unlimitedStorage"
+    ]
+}

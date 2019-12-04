@@ -1,0 +1,40 @@
+{
+  "name": "the-chrome-assistant",
+  "version": "1.0.0",
+  "description": "Smart assistant that unifies the web experience in the chrome browser, automates tasks based on voice, provides scheduled updates on user concerns, implement important lacking features in chrome, and many more, just by installing a simple chrome extension.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zairza-cetb/The-Chrome-Assistant.git"
+  },
+  "keywords": [
+    "assistant",
+    "chrome",
+    "extension",
+    "search",
+    "live-weather",
+    "medicine-review",
+    "word-meanings",
+    "automated-mails"
+  ],
+  "author": "team zairza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zairza-cetb/The-Chrome-Assistant/issues"
+  },
+  "homepage": "https://github.com/zairza-cetb/The-Chrome-Assistant#readme",
+  "devDependencies": {
+    "del": "^5.1.0",
+    "gulp": "^3.9.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-prettier": "^2.3.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify-es": "^2.0.0",
+    "run-sequence": "^2.2.1",
+    "webpack": "^4.41.2",
+    "webpack-stream": "^5.2.1"
+  }
+}
