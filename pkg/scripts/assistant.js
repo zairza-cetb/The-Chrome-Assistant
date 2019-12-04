@@ -1,1 +1,1 @@
-"use strict";const app=angular.module("chrome-assistant",["ngRoute","ngResource"]);app.config(["$routeProvider",function(t){t.when("/",{templateUrl:"./components/test.html",controller:"test-contr"})}]),app.controller("test-contr",["$scope",function(t){console.warn("inside the test-contr")}]);
+"use strict";const app=angular.module("chrome-assistant",["ngRoute"]);app.config(["$routeProvider",function(t){t.when("/",{templateUrl:"./components/test.html",controller:"test-contr"})}]),app.controller("test-contr",["$scope",function(t){console.warn("inside the test-contr")}]);

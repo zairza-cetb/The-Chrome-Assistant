@@ -1,6 +1,6 @@
 'use strict';
 
-const app = angular.module('chrome-assistant', ['ngRoute', 'ngResource']);
+const app = angular.module('chrome-assistant', ['ngRoute']);
 
 
 app.config(['$routeProvider', function($routeProvider) {
