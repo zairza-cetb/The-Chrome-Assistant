@@ -1,26 +1,13 @@
 {
-    "manifest_version": 1,
+    "manifest_version": 2,
     "version": "1.0.0",
     "name": "The-Chrome-Assistant",
-    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt8sOp84U8vR8eudy6JiiJtnjpEwEfmSKoEbWPSoCpf4OwlTyluUCwOBuqyc7uRRrPurWBj84OAZWewHnsJoSQs5NV0JzWsSrsv5GVv33cfJkRL4Zn77PzrF5fE53uI8E0ueA4ynGLVZ7DhjjIQjwCfVdZdsh1+4ZPKURjF0XZ7olK3z00EMNqHFdMqsv8R1Dkz9M1Oj2OoEiHMwE3sZD2tFtSaxnO/PqemsZLYhIUXSz9EreDXmD6qtlOGphUPCmJ0P4915HGwPJx7V84vXGf6KJf1GEy3uo2t+hJsCTZ0dDC6UBrltWd0ug+zD9QE/YnmWT069yUEfqXy6LmxlRgQIDAQAB",
     "short_name": "Assistant",
     "description": "Smart assistant that unifies the web experience in the chrome browser, automates tasks based on voice, provides scheduled updates on user concerns, implement important lacking features in chrome, and many more, just by installing a simple chrome extension.",
-    "background" : {
-      "scripts" : ["background.js"],
-      "persistent": false
-    },
-    "options_page": "views/options.html",
     "browser_action" :
     {
-      "default_icon" : "assets/img/48.png",
       "default_title" : "The-Chrome-Assistant",
-      "default_popup" : "views/popup.html"
-    },
-    "icons" : {
-      "22" : "assets/img/22.png",
-      "24" : "assets/img/24.png",
-      "48" : "assets/img/48.png",
-      "128" : "assets/img/128.png"
+      "default_popup" : "ui/view.html"
     },
     "permissions": [
       "http://google.com/",

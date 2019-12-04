@@ -17,12 +17,12 @@ gulp.task('default', () => {
 
 gulp.task('pack-dependencies', () => {
     return gulp.src('./src/assets/js/*')
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('./pkg/assets/js'));
 });
 
 gulp.task('bundle-scripts', () => {
-    return gulp.src('./src/scripts/*.js')
+    return gulp.src('./src/scripts/**/*.js')
     .pipe(uglify())
     .pipe(gulp.dest('./pkg/scripts'));
 });
@@ -33,7 +33,7 @@ gulp.task('bundle-remain', () => {
 });
 
 gulp.task('bundle-views', () => {
-    return gulp.src('./src/ui/*')
+    return gulp.src('./src/ui/**/*')
         .pipe(minifyHTML({
             collapseWhitespace: true
         }))
@@ -41,7 +41,7 @@ gulp.task('bundle-views', () => {
 });
 
 gulp.task('build', () => {
-    seqRunner('clean', 'pack-dependencies', ['bundle-scripts', 'bundle-views', 'bundle-remain']);
+    seqRunner('clean', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain']);
 });
 
 gulp.task('watch', ['package-dependencies'], () => {
