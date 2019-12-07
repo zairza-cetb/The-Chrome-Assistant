@@ -6,10 +6,22 @@ const app = angular.module('chrome-assistant', ['ngRoute']);
 app.config([
   '$routeProvider',
   function($routeProvider) {
-    $routeProvider.when('/', {
-      templateUrl: './components/test.html',
-      controller: 'test-contr'
-    });
+    $routeProvider
+      .when('/test', {
+        templateUrl: './components/test.html',
+        controller: 'test-contr'
+      })
+      .when('/', {
+        templateUrl: './components/view-assistant-area.html',
+        controller: 'assistant-contr'
+      });
+  }
+]);
+
+app.controller('assistant-contr', [
+  '$scope',
+  function($scope) {
+    console.log('inside assistant controller');
   }
 ]);
 

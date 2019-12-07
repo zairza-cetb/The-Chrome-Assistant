@@ -8,3 +8,22 @@
     left: 5%;
     font-size: 18px;
 }
+
+.tca-footer {
+    padding-top: 0;
+    width: -webkit-fill-available;
+    position: absolute;
+    bottom: 0%;
+}
+
+.tca-footer-head {
+    font-size: x-small;
+}
+
+.row-footer-overider {
+    margin-bottom: 0px;
+}
+
+.container-footer-overider {
+    width: -webkit-fill-available;
+}
