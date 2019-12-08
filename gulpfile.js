@@ -7,7 +7,8 @@ const gulp = require('gulp'),
     rename = require('gulp-rename'),
     prettier = require('gulp-prettier'),
     minifyHTML = require('gulp-htmlmin'),
-    minifyCSS = require('gulp-cssmin')
+    minifyCSS = require('gulp-cssmin'),
+    minifyIMG = require('gulp-imagemin')
 
 gulp.task('clean', () => {
     return del('./pkg', {
@@ -61,19 +62,26 @@ gulp.task('bundle-views', () => {
         .pipe(gulp.dest('./pkg/ui'));
 });
 
+gulp.task('bundle-images', () => {
+    return gulp.src('./src/assets/img/*')
+        .pipe(minifyIMG())
+        .pipe(gulp.dest('pkg/assets/img'));
+});
+
 gulp.task('build', () => {
-    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles']);
+    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles', 'bundle-images']);
 });
 
 gulp.task('run', ['pack-dependencies', 'bundle-scripts', 'bundle-remain', 'bundle-views', 'bundle-styles']);
 
 gulp.task('watch', () => {
-    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles']);
+    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles', 'bundle-images']);
     gulp.watch('./src/assets/js/*',['pack-dependencies']);
     gulp.watch('./src/scripts/**/*.js', ['bundle-scripts']);
     gulp.watch('./src/manifest.json', ['bundle-remain']);
     gulp.watch('./src/ui/**/*', ['bundle-views']);
     gulp.watch('./src/styles/*', ['bundle-styles']);
+    gulp.watch('./src/assets/img/*', ['bundle-images']);
 });
 
 gulp.task('default', ['run', 'watch']);

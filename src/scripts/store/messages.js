@@ -1,8 +1,0 @@
-export const messages = {
-  welcome: [
-    'Hi! How can I help you?',
-    'Hi! Anything I can help you with?',
-    'Hey there',
-    'Hi!'
-  ]
-};

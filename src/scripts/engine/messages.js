@@ -1,4 +1,4 @@
-import { messages as preDefMessages } from '../store/messages';
+import preDefMessages from '../store/messages';
 
 class Messages {
   constructor() {
