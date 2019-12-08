@@ -1,7 +1,9 @@
 'use strict';
 import GlobalVars from './utils/global';
+import Messages from './engine/messages';
 
-const app = angular.module('chrome-assistant', ['ngRoute']);
+const app = angular.module('chrome-assistant', ['ngRoute']),
+  messagesInstance = new Messages();
 
 app.config([
   '$routeProvider',
@@ -21,7 +23,7 @@ app.config([
 app.controller('assistant-contr', [
   '$scope',
   function($scope) {
-    console.log('inside assistant controller');
+    $scope.welcomeMessage = messagesInstance.getPreDefinedRandomized('welcome');
   }
 ]);
 
