@@ -28,5 +28,4 @@ class Messages {
 
     return this.messages.key;
   }
-
 }

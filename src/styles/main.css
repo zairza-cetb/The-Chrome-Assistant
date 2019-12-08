@@ -27,3 +27,15 @@
 .container-footer-overider {
     width: -webkit-fill-available;
 }
+
+.override-card-long {
+    padding: 29% 25%;
+}
+
+.override-card-padding {
+    margin: -15%;
+}
+
+.assistant-main-input-field {
+    text-align: center;
+}
