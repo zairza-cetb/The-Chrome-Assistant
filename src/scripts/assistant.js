@@ -1,11 +1,12 @@
 'use strict';
 import GlobalVars from './utils/global';
 import Messages from './engine/messages';
+import { WebSpeech } from './engine/ws-ss-api';
 
-const app = angular.module('chrome-assistant', ['ngRoute']),
+const assistant = angular.module('chrome-assistant', ['ngRoute']),
   messagesInstance = new Messages();
 
-app.config([
+assistant.config([
   '$routeProvider',
   function($routeProvider) {
     $routeProvider
@@ -20,14 +21,17 @@ app.config([
   }
 ]);
 
-app.controller('assistant-contr', [
+assistant.controller('assistant-contr', [
   '$scope',
   function($scope) {
     $scope.welcomeMessage = messagesInstance.getPreDefinedRandomized('welcome');
+    $scope.handleMicInAssistantView = () => {
+      const instance = new WebSpeech('assistant-input-field', 10);
+    };
   }
 ]);
 
-app.controller('test-contr', [
+assistant.controller('test-contr', [
   '$scope',
   function($scope) {
     console.warn('inside the test-contr');

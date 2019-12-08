@@ -42,4 +42,13 @@
 
 .assistant-main-show {
     text-align: center;
+    font-weight: 600;
+}
+
+.mic-default-style {
+    height: 30px;
+}
+
+.assistant-view-img-mic-wrapper {
+    display: inline-flex;
 }
