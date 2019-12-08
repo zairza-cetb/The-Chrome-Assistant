@@ -31,7 +31,7 @@ gulp.task('js-pretty', () => {
 gulp.task('bundle-scripts', () => {
     return gulp.src('./src/scripts/**/*.js')
     .pipe(webpack({
-        mode: 'production'
+        mode: 'development'
     }, compiler))
     .pipe(uglify({
         output: {
