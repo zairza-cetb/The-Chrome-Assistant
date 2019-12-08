@@ -9,6 +9,7 @@
       "default_title" : "The-Chrome-Assistant",
       "default_popup" : "ui/view.html"
     },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "permissions": [
       "http://google.com/",
       "tabs",
