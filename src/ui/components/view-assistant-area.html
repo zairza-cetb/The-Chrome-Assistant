@@ -4,10 +4,13 @@
             <div class="assistant-main-show">
                 {{ welcomeMessage }}
             </div>
-            <div class="input-field col s12 assistant-view-img-mic-wrapper">
-                <input type="text" id="assistant-input-field" name="" id="" class="assistant-main-input-field" size="40">
-                <img src="../assets/img/mic-def.png" alt="mic-default" class="mic-default-style" ng-click="handleMicInAssistantView()" />
-            </div>
+            <form ng-submit="sendMessage()" style="text-align: center;">
+                <div class="input-field col s12 assistant-view-img-mic-wrapper">
+                    <input type="text" id="assistant-input-field" name="" id="" ng-model="queryField" placeholder="Write anything here ..." class="assistant-main-input-field" size="40">
+                    <img src="../assets/img/mic-def.png" alt="mic-default" class="mic-default-style" ng-click="handleMicInAssistantView()" />
+                </div>
+                <button class="btn btn-primary" type="submit">Send</button>
+            </form>
         </div>
     </div>
 </div>
