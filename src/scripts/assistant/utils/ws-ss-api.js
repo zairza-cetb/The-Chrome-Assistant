@@ -1,4 +1,4 @@
-import SupportedLanguages from '../../store/supported-languages';
+import SupportedLanguages from '../store/supported-languages';
 
 export class WebSpeech {
   constructor(
@@ -14,13 +14,11 @@ export class WebSpeech {
   }
 
   initBinderProps() {
-    console.warn('inside binder');
     this.WebSpeech.continous = true;
     if (!this.isTargetAvailable(0)) {
       throw new Error(`[TCA] unable to find the target element with the
         ID: ${this.targetID} at an recursive count of ${this.countPermissibleTarget}.`);
     }
-    this.WebSpeech.start();
     this.WebSpeech.onresult = e => {
       const messageUserSpeech = document.getElementById(this.targetID);
       let tmp = '';
