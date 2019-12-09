@@ -29,18 +29,32 @@ gulp.task('js-pretty', () => {
         .pipe(gulp.dest('./src/scripts'));
 });
 
-gulp.task('bundle-scripts', () => {
+gulp.task('bundle-scripts-assistant', () => {
     return gulp.src('./src/scripts/**/*.js')
     .pipe(webpack({
         mode: 'development'
     }, compiler))
     .pipe(uglify({
         output: {
-            max_line_len: 120
+            max_line_len: 80
         }
     }))
     .pipe(rename('assistant.js'))
     .pipe(gulp.dest('./pkg/scripts'));
+});
+
+gulp.task('bundle-scripts-background', () => {
+    return gulp.src('./src/scripts/background/**/*.js')
+        .pipe(webpack({
+            mode: 'development'
+        }, compiler))
+        .pipe(uglify({
+            output: {
+                max_line_len: 80
+            }
+        }))
+        .pipe(rename('background.js'))
+        .pipe(gulp.dest('./pkg/scripts'));
 });
 
 gulp.task('bundle-styles', () => {
@@ -69,15 +83,30 @@ gulp.task('bundle-images', () => {
 });
 
 gulp.task('build', () => {
-    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles', 'bundle-images']);
+    seqRunner('clean', 'js-pretty', 'bundle-scripts-background', [
+        'pack-dependencies',
+        'bundle-scripts-assistant',
+        'bundle-views',
+        'bundle-remain',
+        'bundle-styles',
+        'bundle-images'
+    ]);
 });
 
 gulp.task('run', ['pack-dependencies', 'bundle-scripts', 'bundle-remain', 'bundle-views', 'bundle-styles']);
 
 gulp.task('watch', () => {
-    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles', 'bundle-images']);
+    seqRunner('clean', 'js-pretty', 'bundle-scripts-background', [
+        'pack-dependencies',
+        'bundle-scripts-assistant',
+        'bundle-views',
+        'bundle-remain',
+        'bundle-styles',
+        'bundle-images'
+    ]);
     gulp.watch('./src/assets/js/*',['pack-dependencies']);
-    gulp.watch('./src/scripts/**/*.js', ['bundle-scripts']);
+    gulp.watch('./src/scripts/assistant/**/*.js', ['bundle-scripts-assistant']);
+    gulp.watch('./src/scripts/background/**/*.js', ['bundle-scripts-background']);
     gulp.watch('./src/manifest.json', ['bundle-remain']);
     gulp.watch('./src/ui/**/*', ['bundle-views']);
     gulp.watch('./src/styles/*', ['bundle-styles']);

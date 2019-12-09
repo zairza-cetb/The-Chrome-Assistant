@@ -2,6 +2,7 @@
 import GlobalVars from './utils/global';
 import Messages from './engine/messages';
 import { WebSpeech } from './engine/ws-ss-api';
+import { Background } from './engine/background';
 
 const assistant = angular.module('chrome-assistant', ['ngRoute']),
   messagesInstance = new Messages();
