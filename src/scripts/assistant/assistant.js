@@ -1,10 +1,10 @@
 'use strict';
-import GlobalVars from './utils/global';
-import Messages from './engine/messages';
-import { WebSpeech } from './engine/ws-ss-api';
-import { Background } from './engine/background';
+import Messages from './utils/messages';
+import { WebSpeech } from './utils/ws-ss-api';
+import { Background } from './utils/background';
 
 const assistant = angular.module('chrome-assistant', ['ngRoute']),
+  backgroundConnecter = new Background(),
   messagesInstance = new Messages();
 
 assistant.config([
@@ -25,9 +25,16 @@ assistant.config([
 assistant.controller('assistant-contr', [
   '$scope',
   function($scope) {
+    $scope.queryField = '';
     $scope.welcomeMessage = messagesInstance.getPreDefinedRandomized('welcome');
     $scope.handleMicInAssistantView = () => {
       const instance = new WebSpeech('assistant-input-field', 10);
+    };
+    $scope.testBackgroundScript = () => {
+      backgroundConnecter.TestMessagesArch();
+    };
+    $scope.sendMessage = () => {
+      backgroundConnecter.Query($scope.queryField);
     };
   }
 ]);
