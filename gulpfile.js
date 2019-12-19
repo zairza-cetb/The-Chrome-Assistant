@@ -57,6 +57,20 @@ gulp.task('bundle-scripts-background', () => {
         .pipe(gulp.dest('./pkg/scripts'));
 });
 
+gulp.task('bundle-scripts-content', () => {
+    return gulp.src('./src/scripts/content-scripts/**/*.js')
+        .pipe(webpack({
+            mode: 'development'
+        }, compiler))
+        .pipe(uglify({
+            output: {
+                max_line_len: 80
+            }
+        }))
+        .pipe(rename('contentScript.js'))
+        .pipe(gulp.dest('./pkg/scripts'));
+});
+
 gulp.task('bundle-styles', () => {
     return gulp.src('./src/styles/*')
         .pipe(minifyCSS())
@@ -83,8 +97,7 @@ gulp.task('bundle-images', () => {
 });
 
 gulp.task('build', () => {
-<<<<<<< HEAD
-    seqRunner('clean', 'js-pretty', 'bundle-scripts-background', [
+    seqRunner('clean', 'js-pretty', 'bundle-scripts-background', 'bundle-scripts-content', [
         'pack-dependencies',
         'bundle-scripts-assistant',
         'bundle-views',
@@ -92,16 +105,12 @@ gulp.task('build', () => {
         'bundle-styles',
         'bundle-images'
     ]);
-=======
-    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles', 'bundle-images']);
->>>>>>> d1e3de4a51d1dada8265106f50babd9f9cf60a2b
 });
 
 gulp.task('run', ['pack-dependencies', 'bundle-scripts', 'bundle-remain', 'bundle-views', 'bundle-styles']);
 
 gulp.task('watch', () => {
-<<<<<<< HEAD
-    seqRunner('clean', 'js-pretty', 'bundle-scripts-background', [
+    seqRunner('clean', 'js-pretty', 'bundle-scripts-background', 'bundle-scripts-content', [
         'pack-dependencies',
         'bundle-scripts-assistant',
         'bundle-views',
@@ -109,9 +118,6 @@ gulp.task('watch', () => {
         'bundle-styles',
         'bundle-images'
     ]);
-=======
-    seqRunner('clean', 'js-pretty', ['pack-dependencies', 'bundle-scripts', 'bundle-views', 'bundle-remain', 'bundle-styles', 'bundle-images']);
->>>>>>> d1e3de4a51d1dada8265106f50babd9f9cf60a2b
     gulp.watch('./src/assets/js/*',['pack-dependencies']);
     gulp.watch('./src/scripts/assistant/**/*.js', ['bundle-scripts-assistant']);
     gulp.watch('./src/scripts/background/**/*.js', ['bundle-scripts-background']);

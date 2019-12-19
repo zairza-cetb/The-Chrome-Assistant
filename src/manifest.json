@@ -13,6 +13,12 @@
       "scripts" : ["scripts/background.js"],
       "persistent": false
     },
+    "content_scripts": [
+      {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["scripts/contentScript.js"]
+      }
+    ],
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "permissions": [
       "http://google.com/",
