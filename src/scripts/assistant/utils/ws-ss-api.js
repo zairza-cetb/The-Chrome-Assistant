@@ -1,4 +1,4 @@
-import SupportedLanguages from '../store/supported-languages';
+import SupportedLanguages from '../../store/supported-languages';
 
 export class WebSpeech {
   constructor(

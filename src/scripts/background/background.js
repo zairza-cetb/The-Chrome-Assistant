@@ -12,7 +12,7 @@ function logInTerminal(message) {
     console.log(`[TCA] Time: ${new Date()} \t ${JSON.stringify(message)}`);
     return;
   }
-  console.log(`[TCA] Time: ${new Date()} \t ${message}`)
+  console.log(`[TCA] Time: ${new Date()} \t ${message}`);
 }
 
 chrome.runtime.onMessage.addListener(async (message, sender, respond) => {
@@ -27,11 +27,16 @@ chrome.runtime.onMessage.addListener(async (message, sender, respond) => {
 
     case 'query':
       logInTerminal(`type: query; query: ${JSON.stringify(message.message)}`);
-      respond(createResponseInFormat('query', { result: 'success', wasMessage: message.message }));
+      respond(
+        createResponseInFormat('query', {
+          result: 'success',
+          wasMessage: message.message
+        })
+      );
       break;
 
     default:
-      logInTerminal(`type: ${message.type}; message: ${message.message}`)
+      logInTerminal(`type: ${message.type}; message: ${message.message}`);
       respond(createResponseInFormat('test', { status: 'working' }));
   }
 });

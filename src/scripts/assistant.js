@@ -1,7 +1,7 @@
 'use strict';
-import GlobalVars from './utils/global';
-import Messages from './engine/messages';
-import { WebSpeech } from './engine/ws-ss-api';
+import GlobalVars from './assistant/utils/global';
+import Messages from './assistant/utils/messages';
+import { WebSpeech } from './assistant/utils/ws-ss-api';
 
 const assistant = angular.module('chrome-assistant', ['ngRoute']),
   messagesInstance = new Messages();
