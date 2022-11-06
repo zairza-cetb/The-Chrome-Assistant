@@ -28,7 +28,7 @@
   "homepage": "https://github.com/zairza-cetb/The-Chrome-Assistant#readme",
   "devDependencies": {
     "del": "^5.1.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-cssmin": "^0.2.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^6.2.0",
